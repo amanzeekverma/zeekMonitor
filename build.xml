@@ -1,0 +1,109 @@
+<?xml version="1.0"?>
+
+<project name="ZeeKMonitor-build" basedir="." default="createWAR">
+	<property file="build.properties" />
+	
+	<path id="classpath_z">
+
+			<fileset dir="${project.webContent}/WEB-INF/lib">
+
+				<include name="*.jar"/>
+
+			</fileset>
+
+		</path>
+	
+	<target name="clean">
+
+		<delete dir="${project.classes.dir}/*.*"/>
+
+		<delete dir="${project.dist.dir}"/>
+
+	</target>
+
+
+
+	<target name="init">
+
+		<mkdir dir="${project.classes.dir}"/>
+
+		<mkdir dir="${project.dist.dir}"/>
+
+	</target>
+
+
+
+	<target name="compile">
+		<javac destdir="${project.classes.dir}" nowarn="on" classpathref="classpath_z">
+			<src path="${project.src.dir}" />
+		</javac>
+	</target>
+
+
+
+	<target name="createWAR">
+
+		<war warfile="${project.dist.dir}/${war-file}" webxml="${project.config.dir}/web.xml">
+
+			<!--<zipfileset dir="${home}/lib" prefix="WEB-INF/lib">
+
+				<include name="**/*.*" />
+
+			</zipfileset> -->
+
+
+
+			<zipfileset dir="${project.classes.dir}" prefix="WEB-INF/classes">
+
+				<include name="**/*.*" />
+
+			</zipfileset>
+			
+			
+			<zipfileset dir="${project.webContent}" prefix="">
+				<include name="**/*.html" />
+							<!--include name="**/*.jsp" />
+
+							<include name="**/*.html" />
+
+							<include name="**/*.xml" /-->
+				
+							<include name="**/*.*" />
+
+			</zipfileset>
+
+			<zipfileset dir="${project.config.dir}" prefix="WEB-INF/classes/config">
+
+				<include name="**/*.*" />
+				
+				<exclude name="**/web.xml"/>
+				
+				<exclude name="**/log4j.properties"/>
+
+			</zipfileset>
+			
+			<zipfileset dir="${project.config.dir}" prefix="WEB-INF/classes">
+
+				<include name="**/log4j.properties"/>
+
+			</zipfileset>
+
+
+
+		<!-- averma1: Moving this set of packing above. So that web-content items can be overrided by config items.	
+			<zipfileset dir="${project.webContent}" prefix="">
+
+				<include name="**/*.jsp" />
+
+				<include name="**/*.html" />
+
+				<include name="**/*.xml" />
+
+			</zipfileset> -->
+
+		</war>
+
+	</target>
+
+</project>
+

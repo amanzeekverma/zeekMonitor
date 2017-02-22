@@ -1,0 +1,2 @@
+./runDataCollector.sh &
+./runChart.sh &

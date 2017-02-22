@@ -1,0 +1,49 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<web-app xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns="http://java.sun.com/xml/ns/javaee" xmlns:web="http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" xsi:schemaLocation="http://java.sun.com/xml/ns/javaee http://java.sun.com/xml/ns/javaee/web-app_2_5.xsd" id="WebApp_ID" version="2.5">
+  <display-name>ZeeKMonitor</display-name>
+  <welcome-file-list>
+    <welcome-file>index.html</welcome-file>
+    <welcome-file>index.htm</welcome-file>
+    <welcome-file>index.jsp</welcome-file>
+    <welcome-file>default.html</welcome-file>
+    <welcome-file>default.htm</welcome-file>
+    <welcome-file>default.jsp</welcome-file>
+  </welcome-file-list>
+   <servlet>
+
+	<servlet-name>testChart</servlet-name>
+
+	<servlet-class>com.zeek.servlets.TestServlet</servlet-class>
+
+  </servlet>
+
+  <servlet-mapping>
+
+	  <servlet-name>testChart</servlet-name>
+
+	  <url-pattern>/TestServlet/*</url-pattern>
+
+  </servlet-mapping> 
+
+
+
+<servlet>
+        <servlet-name>GetCharts</servlet-name>
+        <servlet-class>com.zeek.servlets.GetCharts</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>GetCharts</servlet-name>
+        <url-pattern>/GetCharts</url-pattern>
+    </servlet-mapping>
+  
+<servlet>
+        <servlet-name>LiveMonitors</servlet-name>
+        <servlet-class>com.zeek.servlets.LiveMonitors</servlet-class>
+    </servlet>
+
+    <servlet-mapping>
+        <servlet-name>LiveMonitors</servlet-name>
+        <url-pattern>/LiveMonitors</url-pattern>
+    </servlet-mapping>
+</web-app>
